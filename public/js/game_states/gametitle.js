@@ -20,42 +20,20 @@ GameTitle.prototype = {
     	var bgImage = this.add.image(this.world.centerX, this.world.centerY, 'pic');
     	bgImage.anchor.set(0.5);
 
-    	// ---------------------------------------
-    	// skip initial screen - remove me
-    	//this.startGame();
-    	// ---------------------------------------
-
         this.stage.backgroundColor = '#182d3b';
 
         var background = this.add.tileSprite(0, 0, 800, 600, 'pic');
 
-        var button = this.add.button(this.world.centerX - 95, 400, 'button', this.actionOnClick(), this, 2, 1, 0);
-console.log(button);
-
-        button.onInputOver.add(this.over, this);
-        button.onInputOut.add(this.out, this);
-        button.onInputUp.add(this.up, this);
+        var button = this.add.button(this.world.centerX - 95, 400, 'button', this.actionOnClick, this, 2, 1, 0);
 
     },
-    up :function() {
-    console.log('button up', arguments);
-},
 
-    over :function () {
-    console.log('button over');
-},
-
-    out :function () {
-    console.log('button out');
-},
     actionOnClick: function  () {
-
-    alert('hii');
-
-},
+    	this.startGame();
+	},
 
 
-// TODO: call this function when the player click "Play" button
+	// TODO: call this function when the player click "Play" button
     startGame: function(){
     	console.log("Function: gametitle.startGame");
         this.game.state.start("Main");
