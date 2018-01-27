@@ -2,12 +2,12 @@
 const express = require('express');
 const http = require('http');
 
-// Socket listener
-const socket = require('socket.io').listen(http);
-
 // ExpressJS app listener
 const app = express();
 const server = http.createServer(app);
+
+// Socket listener
+const socket = require('socket.io').listen(server);
 
 // Starts the server
 if (process.env.C9_PROJECT) {
@@ -30,3 +30,14 @@ app.use(express.static('public'))
 app.get ('/', function(req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
+
+/*********************************************************
+ * SOCKET LISTENERS
+ */
+
+var connections = [];
+
+// Listener for connection requests
+socket.sockets.on('connection', function(socket) {
+    console.log ('Client connected')
+})
