@@ -18,6 +18,7 @@ Preload.prototype = {
 
         this.load.image('pic', 'assets/pics/bg2.png');
         this.load.image('bg_blue', 'assets/pics/bg_blue.png');
+        this.load.image('spot', 'assets/sprites/spot.png');
         this.load.image('player1', 'assets/sprites/block.png');
         this.load.image('player2', 'assets/sprites/block.png');
         this.load.image('beam', 'assets/sprites/block.png');
