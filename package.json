@@ -19,7 +19,7 @@
   "homepage": "https://github.com/paulera/game#readme",
   "dependencies": {
     "express": "^4.16.2",
-    "phaser": "^2.6.2",
+    "phaser": "^3.0.0-beta.19",
     "socket.io": "^2.0.4"
   }
 }
