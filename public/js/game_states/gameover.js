@@ -12,10 +12,11 @@ var GameOver = function(game){};
 GameOver.prototype = {
 
     create: function(){
-
+    	console.log("Function: gameover.create");
     },
 
     restartGame: function(){
+    	console.log("Function: gameover.restartgame");
         this.game.state.start("GameTitle");
     }
 

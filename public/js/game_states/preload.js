@@ -14,6 +14,8 @@ Preload.prototype = {
 
     preload: function(){ 
 
+    	console.log("Function: preload.preload");
+
         this.load.image('pic', 'assets/pics/bg2.png');
         this.load.image('player1', 'assets/sprites/block.png');
         this.load.image('player2', 'assets/sprites/block.png');
@@ -100,19 +102,18 @@ Preload.prototype = {
 	        if (deltaXabs > deltaYabs) {
 	            // horizontal
 	            if (deltaX > swipeThreshold) {
-	                console.log("right");
+	                swipe("right");
 	            } else if (-deltaX > swipeThreshold) {
-	                console.log("left");
+	                swipe("left");
 	            }
 	        } else {
 	            if (deltaY > swipeThreshold) {
-	                console.log("down");
+	                swipe("down");
 	            } else if (-deltaY > swipeThreshold) {
-	                console.log("up");
+	                swipe("up");
 	            }
 	        }
 	        
-
 	    }
 
 
@@ -124,13 +125,14 @@ Preload.prototype = {
 	        console.log("tap");
 	    }
 
-	    function swipe() {
-	        console.log("swipe");
+	    function swipe(direction) {
+	        console.log("swipe: " + direction);
 	    }
 
     },
 
     create: function(){
+    	console.log("Function: preload.create");
         this.game.state.start("GameTitle");
     }
 }

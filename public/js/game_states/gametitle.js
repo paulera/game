@@ -13,11 +13,20 @@ var GameTitle = function(game){};
 
 GameTitle.prototype = {
 
+	// show initial screen with character selection
     create: function(){
+    	console.log("Function: gametitle.preload");
 
+    	// ---------------------------------------
+    	// skip initial screen - remove me
+    	this.startGame();
+    	// ---------------------------------------
+    	
     },
 
+    // TODO: call this function when the player click "Play" button
     startGame: function(){
+    	console.log("Function: gametitle.startGame");
         this.game.state.start("Main");
     }
 
