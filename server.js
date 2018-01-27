@@ -11,8 +11,13 @@ const httpServer = moduleHttp.createServer(expressJsApp);
 const socketHandler = moduleSocketIo.listen(httpServer);
 
 // Starts the server
-httpServer.listen(process.env.PORT, process.env.IP);
-console.log ('Serving on https://' + process.env.C9_HOSTNAME + ':' + process.env.PORT)
+if (process.env.C9_PROJECT) {
+    httpServer.listen(process.env.PORT, process.env.IP);
+    console.log ('Serving on https://' + process.env.C9_HOSTNAME + ':' + process.env.PORT);
+} else {
+    httpServer.listen(8080, '127.0.0.1');
+    console.log ('Serving on https://localhost:8080');
+}
 
 
 /*********************************************************
