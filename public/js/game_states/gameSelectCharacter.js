@@ -21,6 +21,8 @@ GameSelectCharacter.prototype = {
 
         var button = this.add.button(this.world.centerX - 95, 400, 'button', this.actionOnClick, this, 2, 1, 0);
 
+        this.startGame();
+
     },
 
     actionOnClick: function  () {

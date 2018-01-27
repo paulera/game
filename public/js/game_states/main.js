@@ -16,6 +16,10 @@ Main.prototype = {
     	console.log("Function: main.create");
     	this.bindPointerEvents(this);
     	this.createGameBaseEnvironment();
+
+        var player = new Player(this, 'trump');
+        player.render();
+        
     },
 
     // update the screen based on the current game status
@@ -29,7 +33,24 @@ Main.prototype = {
     },
 
     createGameBaseEnvironment: function() {
-    	utils.showBackground(this, 'bg_blue');
+    	imgBackground = utils.showBackground(this, 'bg_blue');
+
+        var cloudBack = this.add.sprite(0, 0, 'cloud_back');
+        cloudBack.alignIn(imgBackground, Phaser.BOTTOM_CENTER);
+        cloudBack.y += 60;
+    	
+        var spotLeft = this.add.sprite(0, 0, 'spot');
+    	spotLeft.alignIn(imgBackground, Phaser.BOTTOM_LEFT);
+
+    	var spotRight = this.add.sprite(0, 0, 'spot');
+    	spotRight.alignIn(imgBackground, Phaser.BOTTOM_RIGHT);
+    	spotRight.anchor.setTo(1,0);
+    	spotRight.scale.x *= -1;
+
+        var cloudFront = this.add.sprite(0, 0, 'cloud_front');
+        cloudFront.alignIn(imgBackground, Phaser.BOTTOM_CENTER);
+        cloudFront.y += 60;
+
     },
 
     bindPointerEvents: function(that) {
