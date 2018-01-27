@@ -14,12 +14,31 @@ Main.prototype = {
 
     create: function() {
     	console.log("Function: main.create");
+    	this.bindPointerEvents(this);
+    	this.createGameBaseEnvironment();
+    },
 
-        this.input.mouse.mouseDownCallback = onMouseDown;
-        this.input.mouse.mouseUpCallback = onMouseUp;
-        this.input.touch.touchStartCallback = onTouchStart;
-        this.input.touch.touchEndCallback = onTouchEnd;
-        this.input.touch.touchMoveCallback = onTouchMove;
+    // update the screen based on the current game status
+    update: function() {
+		//console.log("Function: main.update");
+    },
+
+    gameOver: function(){
+    	console.log("Function: main.gameOver");
+        this.game.state.start('GameOver');
+    },
+
+    createGameBaseEnvironment: function() {
+    	utils.showBackground(this, 'bg_blue');
+    },
+
+    bindPointerEvents: function(that) {
+
+    	that.input.mouse.mouseDownCallback = onMouseDown;
+        that.input.mouse.mouseUpCallback = onMouseUp;
+        that.input.touch.touchStartCallback = onTouchStart;
+        that.input.touch.touchEndCallback = onTouchEnd;
+        that.input.touch.touchMoveCallback = onTouchMove;
 
         /***************************************
          * LOW LEVEL EVENT LISTENERS
@@ -80,7 +99,7 @@ Main.prototype = {
         function parseAction(position) {
             if (Math.abs(position.x - lastDown.x) < tapThreshold && Math.abs(position.y - lastDown.y) < 10) {
                 // the variation on coordinates is too short. that's a tap
-                tap();
+                that.onTap();
             } else {
                 // the variation on coordinates is long. it is a swipe.
                 parseSwipe(position);
@@ -96,42 +115,33 @@ Main.prototype = {
             if (deltaXabs > deltaYabs) {
                 // horizontal
                 if (deltaX > swipeThreshold) {
-                    swipe("right");
+                    that.onSwipe("right");
                 } else if (-deltaX > swipeThreshold) {
-                    swipe("left");
+                    that.onSwipe("left");
                 }
             } else {
                 if (deltaY > swipeThreshold) {
-                    swipe("down");
+                    that.onSwipe("down");
                 } else if (-deltaY > swipeThreshold) {
-                    swipe("up");
+                    that.onSwipe("up");
                 }
             }
 
         }
 
-
-        /***************************************8
-         * HIGH LEVEL EVENT LISTENERS
-         */
-
-        function tap() {
-            console.log("tap");
-        }
-
-        function swipe(direction) {
-            console.log("swipe: " + direction);
-        }
     },
 
-    // update the screen based on the current game status
-    update: function() {
-		//console.log("Function: main.update");
+
+    /***************************************8
+     * HIGH LEVEL EVENT LISTENERS
+     */
+
+    onTap: function() {
+        console.log("tap");
     },
 
-    gameOver: function(){
-    	console.log("Function: main.gameOver");
-        this.game.state.start('GameOver');
-    },
+    onSwipe: function (direction) {
+        console.log("swipe: " + direction);
+    }
 
 };
