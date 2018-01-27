@@ -1,5 +1,5 @@
 (function() {
-
+/*
     var config = {
         type: Phaser.CANVAS,
         parent: 'phaser-example',
@@ -7,7 +7,24 @@
         height: 600,
         scene: {
             preload: preload,
-            create: create
+            create: create,
+            render: render
+        },
+        callbacks: {
+            preBoot: preBoot,
+            postBoot: postBoot
+        }
+    };
+*/
+    var config = {
+        type: Phaser.CANVAS,
+        parent: 'phaser-example',
+        width: 800,
+        height: 400,
+        scene: {
+            preload: preload,
+            create: create,
+            render: render
         },
         callbacks: {
             preBoot: preBoot,
@@ -23,23 +40,45 @@
 
     function preload() {
 
-        this.load.image('pic', 'assets/pics/barbarian-loading.png');
-        this.load.image('block', 'assets/sprites/block.png');
+        this.load.image('pic', 'assets/pics/bg2.png');
+        this.load.image('player1', 'assets/sprites/block.png');
+        this.load.image('player2', 'assets/sprites/block.png');
+        this.load.image('beam', 'assets/sprites/block.png');
 
     }
 
     function create() {
 
+        //bg color
+        //game.stage.backgroundColor = '#440e62';
+
         var pic = this.add.image(0, 0, 'pic');
-        var block = this.add.image(0, 0, 'block');
+        var player1 = this.add.image(0, 0, 'player1');
+        var player2 = this.add.image(0, 0, 'player2');
+        var beam = this.add.image(0, 0, 'beam');
+        var zone = this.add.zone(
+            400,
+            200,
+            800,
+            400
+        );
 
         //  Center the picture in the game
-        Phaser.Display.Align.In.Center(pic, this.add.zone(400, 300, 800, 600));
+        Phaser.Display.Align.In.Center(pic, zone);
 
-        //  Center the sprite to the picture
-        Phaser.Display.Align.In.BottomLeft(block, pic);
+        //  first player
+        Phaser.Display.Align.In.BottomLeft(player1, pic);
+
+        //  second player
+        Phaser.Display.Align.In.BottomRight(player2, pic);
+
+        //been
+        Phaser.Display.Align.In.BottomCenter(beam, pic);
     }
 
+    function render () {
+
+    }
     function preBoot() {
         console.log('I get called before all of the Game systems are created, but after Device is available');
     }

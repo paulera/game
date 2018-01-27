@@ -14,8 +14,8 @@ if (process.env.C9_PROJECT) {
     server.listen(process.env.PORT, process.env.IP);
     console.log ('Serving on https://' + process.env.C9_HOSTNAME + ':' + process.env.PORT);
 } else {
-    server.listen(8080, '127.0.0.1');
-    console.log ('Serving on http://localhost:8080');
+    server.listen(8000, '127.0.0.1');
+    console.log ('Serving on http://localhost:8000');
 }
 
 
