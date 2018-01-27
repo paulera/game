@@ -8,5 +8,5 @@ npm install
 # RUN
 
 ```
-npm server
+node server
 ```
