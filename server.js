@@ -1,21 +1,19 @@
 // import libraries
-const moduleExpressJS = require('express');
-const moduleHttp = require('http');
-const moduleSocketIo = require('socket.io');
+const express = require('express');
+const app = express();
+const http = require('http');
 
 // ExpressJS app listener
-const expressJsApp = moduleExpressJS();
-const httpServer = moduleHttp.createServer(expressJsApp);
+const server = http.createServer(app);
 
-// Socket.io listener - listen through 
-const socketHandler = moduleSocketIo.listen(httpServer);
+const socket = require('socket.io').listen(http);
 
 // Starts the server
 if (process.env.C9_PROJECT) {
-    httpServer.listen(process.env.PORT, process.env.IP);
+    server.listen(process.env.PORT, process.env.IP);
     console.log ('Serving on https://' + process.env.C9_HOSTNAME + ':' + process.env.PORT);
 } else {
-    httpServer.listen(8080, '127.0.0.1');
+    server.listen(8080, '127.0.0.1');
     console.log ('Serving on https://localhost:8080');
 }
 
@@ -24,6 +22,8 @@ if (process.env.C9_PROJECT) {
  * ROUTES
  */
  
-expressJsApp.get ('/', function(req, res) {
+app.use(express.static('public'))
+ 
+app.get ('/', function(req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
