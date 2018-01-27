@@ -4,7 +4,7 @@
         var game = new Phaser.Game(
             window.innerWidth * window.devicePixelRatio,
             window.innerHeight * window.devicePixelRatio,
-            phaser.AUTO
+            Phaser.AUTO
         );
 
         //Add all states
