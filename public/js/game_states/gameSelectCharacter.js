@@ -16,19 +16,38 @@ GameSelectCharacter.prototype = {
 	// show initial screen with character selection
     create: function(){
     	console.log("Function: GameSelectCharacter.create");
-    	;
-        this.stage.backgroundColor = '#182d3b';
+        utils.showBackground(this, 'bg_blue');
 
-        var button = this.add.button(this.world.centerX - 95, 400, 'button', this.actionOnClick, this, 2, 1, 0);
+        //var button = this.add.button(this.world.centerX - 95, 400, 'button', this.actionOnClick, this, 2, 1, 0);
 
+        //add usa char
+        var usa = this.add.image(this.world.centerX - 350, this.world.centerY - 125,'charUsa');
+        var malta = this.add.image(this.world.centerX + 100, this.world.centerY - 125,'charMalta');
+
+        usa.inputEnabled = true;
+        malta.inputEnabled = true;
+        usa.events.onInputDown.add(this.actionOnClickusa, this);
+        malta.events.onInputDown.add(this.actionOnClickmalta, this);
     },
 
-    actionOnClick: function  () {
+    actionOnClickusa: function  () {
 
-        alert('play');
         //this.scale.startFullScreen(false);
-    	//this.startGame();
+    	this.startGame();
+
+    	//save the char selected
+        this.game.selectedCharacter = 1
 	},
+
+
+    actionOnClickmalta: function  () {
+
+        //this.scale.startFullScreen(false);
+        this.startGame();
+
+        //save the char selected
+        this.game.selectedCharacter = 0
+    },
 
 	// TODO: call this function when the player click "Play" button
     startGame: function(){

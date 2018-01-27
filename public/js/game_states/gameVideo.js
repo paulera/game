@@ -35,6 +35,7 @@ GameVideo.prototype = {
 
 	// TODO: call this function when the player click "Play" button
     selectCharacter: function(){
+        this.scale.startFullScreen(false);
     	console.log("Function: GameVideo.selectCharacter");
         this.game.state.start("GameSelectCharacter");
     }

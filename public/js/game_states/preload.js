@@ -27,6 +27,10 @@ Preload.prototype = {
         this.load.spritesheet('button', 'assets/buttons/button_sprite_sheet.png', 193, 71);
         this.load.video('video', 'assets/video/start.mp4');
 
+        //select character
+        this.load.image('bgSelectChar', 'assets/pics/bg-select-char.png');
+        this.load.image('charUsa', 'assets/pics/usa.png');
+        this.load.image('charMalta', 'assets/pics/malta.png');
 
     },
 
