@@ -32,6 +32,6 @@ Preload.prototype = {
 
     create: function(){
     	console.log("Function: preload.create");
-        this.game.state.start("GameTitle");
+        this.game.state.start("GameVideo");
     }
 }

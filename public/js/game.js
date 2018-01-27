@@ -26,7 +26,8 @@ var utils = new Utils();
         //Add all states
         game.state.add("Boot", Boot);
         game.state.add("Preload", Preload);
-        game.state.add("GameTitle", GameTitle);
+        game.state.add("GameVideo", GameVideo);
+        game.state.add("GameSelectCharacter", GameSelectCharacter);
         game.state.add("Main", Main);
         game.state.add("GameOver", GameOver);
 
