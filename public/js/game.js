@@ -1,13 +1,20 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update, render: render })
+(function() {
 
-function preload () {
-}
+        //Create a new game that fills the screen
+        var game = new Phaser.Game(
+            window.innerWidth * window.devicePixelRatio,
+            window.innerHeight * window.devicePixelRatio,
+            Phaser.AUTO
+        );
 
-function create () {
-}
+        //Add all states
+        game.state.add("Boot", Boot);
+        game.state.add("Preload", Preload);
+        game.state.add("GameTitle", GameTitle);
+        game.state.add("Main", Main);
+        game.state.add("GameOver", GameOver);
 
-function update () {
-}
+        //Start the first state
+        game.state.start("Boot");
 
-function render () {
-}
+})();

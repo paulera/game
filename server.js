@@ -1,12 +1,13 @@
 // import libraries
 const express = require('express');
-const app = express();
 const http = require('http');
 
-// ExpressJS app listener
-const server = http.createServer(app);
-
+// Socket listener
 const socket = require('socket.io').listen(http);
+
+// ExpressJS app listener
+const app = express();
+const server = http.createServer(app);
 
 // Starts the server
 if (process.env.C9_PROJECT) {
@@ -21,9 +22,11 @@ if (process.env.C9_PROJECT) {
 /*********************************************************
  * ROUTES
  */
- 
+
+// serve static files from public folder - make it root
 app.use(express.static('public'))
- 
+
+// serve the index.html file
 app.get ('/', function(req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });

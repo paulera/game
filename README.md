@@ -10,3 +10,8 @@ npm install
 ```
 node server
 ```
+
+# References
+
+### States
+* https://www.joshmorony.com/mobile-development-for-web-developers/getting-started-with-phaser.html
