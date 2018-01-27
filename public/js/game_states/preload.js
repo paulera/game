@@ -14,18 +14,16 @@ Preload.prototype = {
 
     preload: function(){ 
 
-
         this.load.image('pic', 'assets/pics/bg2.png');
         this.load.image('player1', 'assets/sprites/block.png');
         this.load.image('player2', 'assets/sprites/block.png');
         this.load.image('beam', 'assets/sprites/block.png');
 
-
-        // game.canvas.addEventListener('mousedown', onMouseDown, true);
-        // game.canvas.addEventListener('mouseup', onMouseUp, true);
-        // game.canvas.addEventListener('touchstart', onTouchStart, true);
-        // game.canvas.addEventListener('touchend', onTouchEnd, true);
-        // game.canvas.addEventListener('touchmove', onTouchMove, true);
+        this.input.mouse.mouseDownCallback = onMouseDown;
+        this.input.mouse.mouseUpCallback = onMouseUp;
+        this.input.touch.touchStartCallback = onTouchStart;
+        this.input.touch.touchEndCallback = onTouchEnd;
+        this.input.touch.touchMoveCallback = onTouchMove;
 
         /***************************************
 	     * LOW LEVEL EVENT LISTENERS
@@ -33,7 +31,6 @@ Preload.prototype = {
 
 	    var tapThreshold = 10;
 	    var swipeThreshold = 30;
-	    var swipeLimit = 30;
 
 	    var lastDown;
 	    var lastUp;
@@ -50,7 +47,7 @@ Preload.prototype = {
 	            x = event.x;
 	            y = event.y;
 	        }
-	        timestamp = event.timestamp;
+	        timestamp = Date.now();
 	        return {
 	            x: x,
 	            y: y,
@@ -59,7 +56,7 @@ Preload.prototype = {
 	    }
 
 	    function onMouseDown(event) {
-	        position = getPositionFromEvent(event);
+	    	position = getPositionFromEvent(event);
 	        lastDown = position;
 	    }
 
@@ -130,6 +127,7 @@ Preload.prototype = {
 	    function swipe() {
 	        console.log("swipe");
 	    }
+
     },
 
     create: function(){
