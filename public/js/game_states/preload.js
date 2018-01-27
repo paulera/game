@@ -24,6 +24,7 @@ Preload.prototype = {
 
         //game tiitle
         this.load.spritesheet('button', 'assets/buttons/button_sprite_sheet.png', 193, 71);
+        this.load.video('video', 'assets/video/start.mp4');
 
 
     },
