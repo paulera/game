@@ -17,11 +17,14 @@ GameTitle.prototype = {
     create: function(){
     	console.log("Function: gametitle.preload");
 
+    	var bgImage = this.add.image(this.world.centerX, this.world.centerY, 'pic');
+    	bgImage.anchor.set(0.5);
+
     	// ---------------------------------------
     	// skip initial screen - remove me
-    	this.startGame();
+    	//this.startGame();
     	// ---------------------------------------
-    	
+
     },
 
     // TODO: call this function when the player click "Play" button
