@@ -22,10 +22,20 @@ GameTitle.prototype = {
         video = this.add.video('video');
 
         video.play(true);
-        //  x, y, anchor x, anchor y, scale x, scale y
-        video.addToWorld(0,0);
 
-        setTimeout(function(){video.play(false)}, 3000);
+
+
+        var ratio = parseFloat(video.height) / parseFloat(video.width);
+        var scaleX = this.game.width / video.width;
+        var scaleY = this.game.height / video.height;
+
+        //  x, y, anchor x, anchor y, scale x, scale y
+        video.addToWorld(0,0, 0,0,scaleX, scaleY);
+        video.width = this.game.width;
+
+        setTimeout(this.stopVideo(this), 3000);
+
+
 
         /*
     	var bgImage = this.add.image(this.world.centerX, this.world.centerY, 'pic');
@@ -41,13 +51,14 @@ GameTitle.prototype = {
 
     actionOnClick: function  () {
 
-        alert('llega');
+        alert('play');
         //this.scale.startFullScreen(false);
     	//this.startGame();
 	},
 
-    demo:function () {
-        alert();
+    stopVideo:function (that) {
+        video.play(false);
+        that.input.onDown.add(that.actionOnClick, that);
     },
 
 	// TODO: call this function when the player click "Play" button
