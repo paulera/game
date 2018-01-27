@@ -18,6 +18,8 @@ Preload.prototype = {
 
         this.load.image('pic', 'assets/pics/bg2.png');
         this.load.image('bg_blue', 'assets/pics/bg_blue.png');
+        this.load.image('cloud_back', 'assets/sprites/cloud_back.png');
+        this.load.image('cloud_front', 'assets/sprites/cloud_front.png');
         this.load.image('spot', 'assets/sprites/spot.png');
         this.load.image('player1', 'assets/sprites/block.png');
         this.load.image('player2', 'assets/sprites/block.png');

@@ -1,5 +1,5 @@
 var utils = new Utils();
-
+var _game;
 (function() {
 
         // // get users screen size
@@ -22,6 +22,8 @@ var utils = new Utils();
             window.innerHeight, // * window.devicePixelRatio,
             Phaser.AUTO
         );
+
+        _game = game;
 
         //Add all states
         game.state.add("Boot", Boot);
