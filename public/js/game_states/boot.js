@@ -21,9 +21,9 @@ Boot.prototype = {
 
     create: function(){
         console.log("Function: boot.create");
-        this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-        this.scale.updateLayout(true);
-        
+        //this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        //this.scale.updateLayout(true);
+
         this.game.state.start("Preload");
     }
 }
