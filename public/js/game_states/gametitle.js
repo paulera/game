@@ -25,9 +25,37 @@ GameTitle.prototype = {
     	//this.startGame();
     	// ---------------------------------------
 
-    },
+        this.stage.backgroundColor = '#182d3b';
 
-    // TODO: call this function when the player click "Play" button
+        var background = this.add.tileSprite(0, 0, 800, 600, 'pic');
+
+        var button = this.add.button(this.world.centerX - 95, 400, 'button', this.actionOnClick(), this, 2, 1, 0);
+console.log(button);
+
+        button.onInputOver.add(this.over, this);
+        button.onInputOut.add(this.out, this);
+        button.onInputUp.add(this.up, this);
+
+    },
+    up :function() {
+    console.log('button up', arguments);
+},
+
+    over :function () {
+    console.log('button over');
+},
+
+    out :function () {
+    console.log('button out');
+},
+    actionOnClick: function  () {
+
+    alert('hii');
+
+},
+
+
+// TODO: call this function when the player click "Play" button
     startGame: function(){
     	console.log("Function: gametitle.startGame");
         this.game.state.start("Main");
