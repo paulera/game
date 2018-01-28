@@ -37,7 +37,8 @@ app.get ('/', function(req, res) {
  */
 var players = [];
 var connections = [];
-
+var playerPoints1 = 0;
+var playerPoints2 = 0;
 // Listener for connection requests on socket.io
 socketHandler.sockets.on('connection', function(socket) {
 
@@ -74,6 +75,24 @@ socketHandler.sockets.on('connection', function(socket) {
     socket.on('select character', function(data) {
         socket.character = data;
         console.log("Receiving message on server: " + data);
+    });
+
+    socket.on('attack', function() {
+        if (socket.id === players[0].id){
+            //player 1
+            playerPoints1++;
+            playerPoints2--;
+            console.log("player 1 points: "+playerPoints1);
+        }
+        if (socket.id === players[1].id){
+            //player 2
+            playerPoints1--;
+            playerPoints2++;
+            console.log("player 2 points: "+playerPoints2);
+        }
+
+        socketHandler.sockets.connected[players[0].id].emit('game updates', playerPoints1);
+        socketHandler.sockets.connected[players[1].id].emit('game updates', playerPoints2);
     });
 
     socket.on('waiting for game', function() {

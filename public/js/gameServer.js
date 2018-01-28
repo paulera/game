@@ -19,5 +19,13 @@ GameServer.prototype = {
             console.log('other player: '+ data);
             callback(data)
         });
+    },
+    attack: function() {
+        this.socket.emit('attack');
+    },
+    waitForgameUpdates: function(callback) {
+        this.socket.on('game update', function(data) {
+            callback(data)
+        });
     }
 };

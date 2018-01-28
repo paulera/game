@@ -251,6 +251,7 @@ Main.prototype = {
 
     onTap: function() {
         console.log("tap");
+        gameServer.attack();
     },
 
     onSwipe: function (direction) {
