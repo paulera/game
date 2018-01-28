@@ -25,7 +25,17 @@ GameServer.prototype = {
     },
     waitForgameUpdates: function(callback) {
         this.socket.on('game update', function(data) {
-            callback(data)
+            callback(data);
+        });
+    },
+    gameWin: function(callback) {
+        this.socket.on('game win', function() {
+            callback()
+        });
+    },
+    gameLose: function(callback) {
+        this.socket.on('game lose', function() {
+            callback()
         });
     }
 };

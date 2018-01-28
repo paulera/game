@@ -57,6 +57,21 @@ Main.prototype = {
         this.beamDuel.load();
         this.beamDuel.setPosition(0);
 
+        gameServer.waitForgameUpdates(function(data){
+            console.log('game change:'+data);
+            _game.beamDuel.setPosition(data);
+        });
+
+        gameServer.gameWin(function(){
+            console.log('game wine:');
+            _game.beamDuel.setPosition(data);
+        });
+
+        gameServer.gameLose(function(){
+            console.log('game lose:');
+            _game.beamDuel.setPosition(data);
+        });
+
         this.game.beamDuel = this.beamDuel;
 
     },

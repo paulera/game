@@ -80,26 +80,29 @@ socketHandler.sockets.on('connection', function(socket) {
     socket.on('attack', function() {
         if (socket.id === players[0].id){
             //player 1
-            playerPoints1++;
-            playerPoints2--;
+            playerPoints1=playerPoints1+5;
+            playerPoints2=playerPoints2-5;
             console.log("player 1 points: "+playerPoints1);
         }
         if (socket.id === players[1].id){
             //player 2
-            playerPoints1--;
-            playerPoints2++;
+            playerPoints1=playerPoints1-5;
+            playerPoints2=playerPoints2+5;
             console.log("player 2 points: "+playerPoints2);
         }
 
+        console.log("game update : "+playerPoints1+ " game update: "+playerPoints2);
         socketHandler.sockets.connected[players[0].id].emit('game update', playerPoints1);
         socketHandler.sockets.connected[players[1].id].emit('game update', playerPoints2);
 
-        if(playerPoints1 === 100){
+        if(playerPoints1 >= 100){
+            console.log("player 1 win ");
             socketHandler.sockets.connected[players[0].id].emit('game win');
             socketHandler.sockets.connected[players[1].id].emit('game lose');
         }
 
-        if(playerPoints2 === 100){
+        if(playerPoints2 >= 100){
+            console.log("player 2 win ");
             socketHandler.sockets.connected[players[1].id].emit('game win');
             socketHandler.sockets.connected[players[0].id].emit('game lose');
         }
