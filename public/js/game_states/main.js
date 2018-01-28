@@ -15,32 +15,34 @@ Main.prototype = {
 
 
     create: function() {
+
+
     	console.log("Function: main.create");
     	this.bindPointerEvents(this);
     	this.createGameBaseEnvironment();
 
         this.player = new Player(this, 'trump', 'left');
         this.player.standStill();
-        this.opponent = new Player(this, 'trump', 'right');
+        this.opponent = new Player(this, 'muscat', 'right');
         this.opponent.standStill();
 
         var color = "#dd0044";
 
-        var style = { font: "1900px Comic Sans MS", fill: color, align: "center" };
-        this.text3 = this.game.add.text(this.game.world.centerX, this.game.world.centerY, "3", style);
+        var style = { font: "1900px Bangers, Arial", fill: color, align: "center" };
+        this.text3 = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 170, " 3 ", style);
         this.text3.anchor.setTo(0.5, 0.5);
         this.text3.visible = false;
 
-        this.text2 = this.game.add.text(this.game.world.centerX, this.game.world.centerY, "2", style);
+        this.text2 = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 170, " 2 ", style);
         this.text2.anchor.setTo(0.5, 0.5);
         this.text2.visible = false;
 
-        this.text1 = this.game.add.text(this.game.world.centerX, this.game.world.centerY, "1", style);
+        this.text1 = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 170, " 1 ", style);
         this.text1.anchor.setTo(0.5, 0.5);
         this.text1.visible = false;
 
-        var style = { font: "400px Comic Sans MS", fill: color, align: "center" };
-        this.textFight = this.game.add.text(this.game.world.centerX, this.game.world.centerY, "Fight!", style);
+        var style = { font: "400px Bangers, Arial", fill: color, align: "center" };
+        this.textFight = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 170, " Fight! ", style);
         this.textFight.anchor.setTo(0.5, 0.5);
         this.textFight.scale.setTo(0.1);
         this.textFight.alpha = 1;
@@ -48,14 +50,21 @@ Main.prototype = {
 
         this.animateCountDown();
         this.animateStartFight();
+
+        var beamDuel = new BeamDuel(this);
+        beamDuel.load();
+        beamDuel.setPosition(0);
+
+
     },
 
     animateStartFight: function() {
-        that = this;
+        var that = this;
         setTimeout(function() {
             that.player.animateToAttackPosition();
             that.opponent.animateToAttackPosition();    
         }, 4200);
+
     },
 
     animateCountDown: function () {

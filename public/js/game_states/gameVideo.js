@@ -17,7 +17,7 @@ GameVideo.prototype = {
     create: function(){
     	console.log("Function: GameVideo.create");
 
-        this.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
+        // this.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
 
         video = this.add.video('video');
         var scaleX = this.game.width / video.width;
@@ -27,6 +27,8 @@ GameVideo.prototype = {
         video.width = this.game.width;
         video.play(true);
         setTimeout(this.stopVideo(this), 3000);
+
+        this.selectCharacter();
     },
     stopVideo:function (that) {
         video.play(false);
@@ -35,7 +37,7 @@ GameVideo.prototype = {
 
 	// TODO: call this function when the player click "Play" button
     selectCharacter: function(){
-        this.scale.startFullScreen(false);
+        // this.scale.startFullScreen(false);
     	console.log("Function: GameVideo.selectCharacter");
         this.game.state.start("GameSelectCharacter");
     }

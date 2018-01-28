@@ -23,9 +23,12 @@ Preload.prototype = {
         this.load.image('spot', 'assets/sprites/spot.png');
         this.load.image('player1', 'assets/sprites/block.png');
         this.load.image('player2', 'assets/sprites/block.png');
-        this.load.image('beam', 'assets/sprites/block.png');
+        this.game.load.spritesheet('beam', 'assets/sprites/beam.png', 32, 400, 32);
+        this.game.load.spritesheet('boom', 'assets/sprites/boom.png', 111, 280, 3);
+        //this.load.spritesheet('beam', 'assets/sprites/beam.png');
 
         this.loadCharacterAssets('trump');
+        this.loadCharacterAssets('muscat');
 
         //game tiitle
         this.load.spritesheet('button', 'assets/buttons/button_sprite_sheet.png', 193, 71);
@@ -39,6 +42,8 @@ Preload.prototype = {
     },
 
     create: function(){
+    	//  Load the Google WebFont Loader script
+    	this.game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
     	console.log("Function: preload.create");
         this.game.state.start("GameVideo");
     },
