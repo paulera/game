@@ -32,6 +32,8 @@ var _game;
         game.state.add("GameVideo", GameVideo);
         game.state.add("GameSelectCharacter", GameSelectCharacter);
         game.state.add("Main", Main);
+        game.state.add("GameWin", GameWin);
+        game.state.add("GameLose", GameLose);
         game.state.add("GameOver", GameOver);
 
         //Start the first state

@@ -64,12 +64,12 @@ Main.prototype = {
 
         gameServer.gameWin(function(){
             console.log('game wine:');
-            //alert('win');
+            _game.state.start("GameWin");
         });
 
         gameServer.gameLose(function(){
             console.log('game lose:');
-            //alert('lose');
+            _game.state.start("GameLose");
         });
 
         this.game.beamDuel = this.beamDuel;
