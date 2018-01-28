@@ -10,15 +10,17 @@ var BeamDuel = function(game) {
 BeamDuel.prototype =  {
 
 	load: function() {
-		this.boom = this.createBoom();
 		var leftColor = Math.floor(Math.random() * 8);
 		var rightColor = Math.floor(Math.random() * 8);
 		while (leftColor == rightColor) {
 			rightColor = Math.floor(Math.random() * 8);
 		}
 		this.beamLeft = this.createBeam(leftColor);
+		this.beamLeft.x = 194;
 		this.beamRight = this.createBeam(rightColor);
-		this.boom.visible = true;
+		this.beamRight.anchor.x = 1;
+		this.beamRight.x = 1245;
+		this.boom = this.createBoom();
 	},
 
 	createBoom: function() {
@@ -28,8 +30,6 @@ BeamDuel.prototype =  {
     	boom.anchor.setTo(0.5,0.5);
     	boom.alignIn(this.game.world, Phaser.BOTTOM_CENTER);
     	boom.y -= 240;
-    	boom.x = 10;
-    	boom.visible = false;
     	return boom;
 	},
 	// color = 0 to 7
@@ -44,7 +44,7 @@ BeamDuel.prototype =  {
         beam.animations.add('waves6', [24, 25, 26, 27, 26, 25]);
         beam.animations.add('waves7', [28, 29, 30, 31, 30, 29]);
         beam.alignIn(this.game.world, Phaser.BOTTOM);
-        beam.y += 856
+        beam.y += 676;
 
         // change to animation num
         beam.animations.play('waves' + color, 8, true);
@@ -52,21 +52,22 @@ BeamDuel.prototype =  {
 	},
 
 	setPosition: function(position) {
-		this.setBoomPosition(740 + (position * 4.8));
-		this.setLeftBeamPosition(200);
-		this.setRightBeamPosition(1220);
+		this.setBoomPosition(710 + (position * 4.8));
+		var i = 526;
+		this.setLeftBeamSize(i);
+		this.setRightBeamSize(i);
 	},
 
 	setBoomPosition: function (position) {
 		this.boom.x = position;
 	},
 
-	setLeftBeamPosition: function(position) {
-		this.beamLeft.x = position;
+	setLeftBeamSize: function(size) {
+		this.beamLeft.width = size;
 	},
 
-	setRightBeamPosition: function(position) {
-		this.beamRight.x = position;
+	setRightBeamSize: function(size) {
+		this.beamRight.width = size;
 	},
 
 	

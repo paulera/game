@@ -51,9 +51,9 @@ Main.prototype = {
         this.animateCountDown();
         this.animateStartFight();
 
-        var beamDuel = new BeamDuel(this);
-        beamDuel.load();
-        beamDuel.setPosition(0);
+        this.beamDuel = new BeamDuel(this);
+        this.beamDuel.load();
+        this.beamDuel.setPosition(0);
 
 
     },
