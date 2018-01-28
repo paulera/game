@@ -17,9 +17,67 @@ Main.prototype = {
     	this.bindPointerEvents(this);
     	this.createGameBaseEnvironment();
 
-        var player = new Player(this, 'trump');
-        player.render();
+        this.player = new Player(this, 'trump', 'right');
+        this.player.standStill();
+        this.opponent = new Player(this, 'trump', 'left');
+        this.opponent.standStill();
+
+        this.startFight();
+    },
+
+    startFight: function () {
+
+        var that = this;
+        var text3, text2, text1, textFight;
+        var style = { font: "2000px Arial", fill: "#ff0044", align: "center" };
+        var countdownInterval = 1000;
+
+        var text3 = that.game.add.text(that.game.world.centerX, that.game.world.centerY, "3", style);
+        text3.anchor.setTo(0.5, 0.5);
+        text3.visible = false;
+
+        var text2 = that.game.add.text(that.game.world.centerX, that.game.world.centerY, "2", style);
+        text2.anchor.setTo(0.5, 0.5);
+        text2.visible = false;
+
+        var text1 = that.game.add.text(that.game.world.centerX, that.game.world.centerY, "1", style);
+        text1.anchor.setTo(0.5, 0.5);
+        text1.visible = false;
+
+        var style = { font: "400px Arial", fill: "#ff0044", align: "center" };
+        var textFight = that.game.add.text(that.game.world.centerX, that.game.world.centerY, "Fight!", style);
+        textFight.anchor.setTo(0.5, 0.5);
+        textFight.scale.setTo(0.1);
+        textFight.alpha = 1;
+        textFight.visible = false;
         
+        setTimeout(function () {
+            text3.visible = true;
+            that.game.add.tween(text3).to( { alpha: 0 }, countdownInterval, Phaser.Easing.Circular.None, true);
+            that.game.add.tween(text3.scale).to( { x: 0.1, y: 0.1 }, countdownInterval, Phaser.Easing.Exponential.None, true);
+        }, countdownInterval);
+
+        setTimeout(function () {
+            text2.visible = true;
+            that.game.add.tween(text2).to( { alpha: 0 }, countdownInterval, Phaser.Easing.Circular.None, true);
+            that.game.add.tween(text2.scale).to( { x: 0.1, y: 0.1 }, countdownInterval, Phaser.Easing.Exponential.None, true);
+        }, countdownInterval * 2);
+
+        setTimeout(function () {
+            text1.visible = true;
+            that.game.add.tween(text1).to( { alpha: 0 }, countdownInterval, Phaser.Easing.Circular.None, true);
+            that.game.add.tween(text1.scale).to( { x: 0.1, y: 0.1 }, countdownInterval, Phaser.Easing.Exponential.None, true);
+        }, countdownInterval * 3);
+
+        setTimeout(function () {
+            textFight.visible = true;
+            //that.game.add.tween(textFight).to( { alpha: 1 }, countdownInterval / 3, Phaser.Easing.Circular.None, true);
+            that.game.add.tween(textFight.scale).to( { x: 1, y: 1 }, countdownInterval / 3, Phaser.Easing.Elastic.Out, true);
+            setTimeout(function () {
+                that.game.add.tween(textFight.scale).to( { x: 0, y: 0 }, countdownInterval / 3, Phaser.Easing.Elastic.In, true);
+            }, countdownInterval / 2);
+        }, countdownInterval * 4);
+    
     },
 
     // update the screen based on the current game status
