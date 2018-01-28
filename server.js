@@ -91,8 +91,19 @@ socketHandler.sockets.on('connection', function(socket) {
             console.log("player 2 points: "+playerPoints2);
         }
 
-        socketHandler.sockets.connected[players[0].id].emit('game updates', playerPoints1);
-        socketHandler.sockets.connected[players[1].id].emit('game updates', playerPoints2);
+        socketHandler.sockets.connected[players[0].id].emit('game update', playerPoints1);
+        socketHandler.sockets.connected[players[1].id].emit('game update', playerPoints2);
+
+        if(playerPoints1 === 100){
+            socketHandler.sockets.connected[players[0].id].emit('game win');
+            socketHandler.sockets.connected[players[1].id].emit('game lose');
+        }
+
+        if(playerPoints2 === 100){
+            socketHandler.sockets.connected[players[1].id].emit('game win');
+            socketHandler.sockets.connected[players[0].id].emit('game lose');
+        }
+
     });
 
     socket.on('waiting for game', function() {
