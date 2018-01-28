@@ -12,69 +12,87 @@ var Main = function(game){
 
 Main.prototype = {
 
+
+
     create: function() {
     	console.log("Function: main.create");
     	this.bindPointerEvents(this);
     	this.createGameBaseEnvironment();
 
-        this.player = new Player(this, 'trump', 'right');
+        this.player = new Player(this, 'trump', 'left');
         this.player.standStill();
-        this.opponent = new Player(this, 'trump', 'left');
+        this.opponent = new Player(this, 'trump', 'right');
         this.opponent.standStill();
 
-        this.startFight();
+        var color = "#dd0044";
+
+        var style = { font: "1900px Comic Sans MS", fill: color, align: "center" };
+        this.text3 = this.game.add.text(this.game.world.centerX, this.game.world.centerY, "3", style);
+        this.text3.anchor.setTo(0.5, 0.5);
+        this.text3.visible = false;
+
+        this.text2 = this.game.add.text(this.game.world.centerX, this.game.world.centerY, "2", style);
+        this.text2.anchor.setTo(0.5, 0.5);
+        this.text2.visible = false;
+
+        this.text1 = this.game.add.text(this.game.world.centerX, this.game.world.centerY, "1", style);
+        this.text1.anchor.setTo(0.5, 0.5);
+        this.text1.visible = false;
+
+        var style = { font: "400px Comic Sans MS", fill: color, align: "center" };
+        this.textFight = this.game.add.text(this.game.world.centerX, this.game.world.centerY, "Fight!", style);
+        this.textFight.anchor.setTo(0.5, 0.5);
+        this.textFight.scale.setTo(0.1);
+        this.textFight.alpha = 1;
+        this.textFight.visible = false;
+
+        this.animateCountDown();
+        this.animateStartFight();
     },
 
-    startFight: function () {
+    animateStartFight: function() {
+        that = this;
+        setTimeout(function() {
+            that.player.animateToAttackPosition();
+            that.opponent.animateToAttackPosition();    
+        }, 4200);
+    },
+
+    animateCountDown: function () {
 
         var that = this;
-        var text3, text2, text1, textFight;
-        var style = { font: "2000px Arial", fill: "#ff0044", align: "center" };
+    
         var countdownInterval = 1000;
 
-        var text3 = that.game.add.text(that.game.world.centerX, that.game.world.centerY, "3", style);
-        text3.anchor.setTo(0.5, 0.5);
-        text3.visible = false;
-
-        var text2 = that.game.add.text(that.game.world.centerX, that.game.world.centerY, "2", style);
-        text2.anchor.setTo(0.5, 0.5);
-        text2.visible = false;
-
-        var text1 = that.game.add.text(that.game.world.centerX, that.game.world.centerY, "1", style);
-        text1.anchor.setTo(0.5, 0.5);
-        text1.visible = false;
-
-        var style = { font: "400px Arial", fill: "#ff0044", align: "center" };
-        var textFight = that.game.add.text(that.game.world.centerX, that.game.world.centerY, "Fight!", style);
-        textFight.anchor.setTo(0.5, 0.5);
-        textFight.scale.setTo(0.1);
-        textFight.alpha = 1;
-        textFight.visible = false;
+        this.text3.visible = false;
+        this.text2.visible = false;
+        this.text1.visible = false;
+        this.textFight.visible = false;
         
         setTimeout(function () {
-            text3.visible = true;
-            that.game.add.tween(text3).to( { alpha: 0 }, countdownInterval, Phaser.Easing.Circular.None, true);
-            that.game.add.tween(text3.scale).to( { x: 0.1, y: 0.1 }, countdownInterval, Phaser.Easing.Exponential.None, true);
+            that.text3.visible = true;
+            that.game.add.tween(that.text3).to( { alpha: 0 }, countdownInterval, Phaser.Easing.Circular.None, true);
+            that.game.add.tween(that.text3.scale).to( { x: 0.05, y: 0.05 }, countdownInterval, Phaser.Easing.Cubic.Out, true);
         }, countdownInterval);
 
         setTimeout(function () {
-            text2.visible = true;
-            that.game.add.tween(text2).to( { alpha: 0 }, countdownInterval, Phaser.Easing.Circular.None, true);
-            that.game.add.tween(text2.scale).to( { x: 0.1, y: 0.1 }, countdownInterval, Phaser.Easing.Exponential.None, true);
+            that.text2.visible = true;
+            that.game.add.tween(that.text2).to( { alpha: 0 }, countdownInterval, Phaser.Easing.Circular.None, true);
+            that.game.add.tween(that.text2.scale).to( { x: 0, y: 0 }, countdownInterval, Phaser.Easing.Cubic.Out, true);
         }, countdownInterval * 2);
 
         setTimeout(function () {
-            text1.visible = true;
-            that.game.add.tween(text1).to( { alpha: 0 }, countdownInterval, Phaser.Easing.Circular.None, true);
-            that.game.add.tween(text1.scale).to( { x: 0.1, y: 0.1 }, countdownInterval, Phaser.Easing.Exponential.None, true);
+            that.text1.visible = true;
+            that.game.add.tween(that.text1).to( { alpha: 0 }, countdownInterval, Phaser.Easing.Circular.None, true);
+            that.game.add.tween(that.text1.scale).to( { x: 0.05, y: 0.05 }, countdownInterval, Phaser.Easing.Cubic.Out, true);
         }, countdownInterval * 3);
 
         setTimeout(function () {
-            textFight.visible = true;
-            //that.game.add.tween(textFight).to( { alpha: 1 }, countdownInterval / 3, Phaser.Easing.Circular.None, true);
-            that.game.add.tween(textFight.scale).to( { x: 1, y: 1 }, countdownInterval / 3, Phaser.Easing.Elastic.Out, true);
+            that.textFight.visible = true;
+            //that.game.add.tween(that.textFight).to( { alpha: 1 }, countdownInterval / 3, Phaser.Easing.Circular.None, true);
+            that.game.add.tween(that.textFight.scale).to( { x: 1, y: 1 }, countdownInterval / 3, Phaser.Easing.Elastic.Out, true);
             setTimeout(function () {
-                that.game.add.tween(textFight.scale).to( { x: 0, y: 0 }, countdownInterval / 3, Phaser.Easing.Elastic.In, true);
+                that.game.add.tween(that.textFight.scale).to( { x: 0, y: 0 }, countdownInterval / 3, Phaser.Easing.Elastic.In, true);
             }, countdownInterval / 2);
         }, countdownInterval * 4);
     
@@ -211,7 +229,7 @@ Main.prototype = {
     },
 
 
-    /***************************************8
+    /***************************************
      * HIGH LEVEL EVENT LISTENERS
      */
 

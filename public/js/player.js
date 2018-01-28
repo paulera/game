@@ -54,7 +54,14 @@ Player.prototype = {
 
 	animateToAttackPosition: function() {
 		this.setFace(1);
-		this.setBody(1);
+		this.setBody(2);
+		var that = this;
+		setTimeout(function() {
+			that.setBody(3);
+		}, 200);
+		setTimeout(function() {
+			that.setBody(4);
+		}, 400);
 	},
 
 	setFace: function(index) {
