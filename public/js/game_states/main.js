@@ -23,8 +23,10 @@ Main.prototype = {
 
         this.player = new Player(this, _game.selectedCharacter, 'left');
         this.player.standStill();
+        this.game.player = this.player;
         this.opponent = new Player(this, _game.otherCharacter, 'right');
         this.opponent.standStill();
+        this.game.opponent = this.opponent;
 
         var color = "#dd0044";
 
@@ -56,7 +58,6 @@ Main.prototype = {
         this.beamDuel.setPosition(0);
 
         this.game.beamDuel = this.beamDuel;
-
 
     },
 
@@ -147,6 +148,10 @@ Main.prototype = {
         that.input.touch.touchStartCallback = onTouchStart;
         that.input.touch.touchEndCallback = onTouchEnd;
         that.input.touch.touchMoveCallback = onTouchMove;
+
+        that.spaceKey = that.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+        that.input.keyboard.addKeyCapture([ Phaser.Keyboard.SPACEBAR ]);
+        that.spaceKey.onDown.add(that.onTap, this);
 
         /***************************************
          * LOW LEVEL EVENT LISTENERS

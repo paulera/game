@@ -82,6 +82,14 @@ Player.prototype = {
 			this.activeBodySprite = this.bodySprites[index];
 		}
 		this.activeBodySprite.visible = true;
+	},
+
+	getBeamColor: function() {
+		if (this.characterFolder == 'trump') {
+			return 2;
+		} else {
+			return 4;
+		}
 	}
 
 

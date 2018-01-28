@@ -10,11 +10,14 @@ var BeamDuel = function(game) {
 BeamDuel.prototype =  {
 
 	load: function() {
-		var leftColor = Math.floor(Math.random() * 8);
-		var rightColor = Math.floor(Math.random() * 8);
-		while (leftColor == rightColor) {
-			rightColor = Math.floor(Math.random() * 8);
-		}
+		// var leftColor = Math.floor(Math.random() * 8);
+		// var rightColor = Math.floor(Math.random() * 8);
+		// while (leftColor == rightColor) {
+		// 	rightColor = Math.floor(Math.random() * 8);
+		// }
+
+		var leftColor = this.game.player.getBeamColor();
+		var rightColor = this.game.opponent.getBeamColor();
 		this.beamLeft = this.createBeam(leftColor);
 		this.beamLeft.x = 194;
 		this.beamRight = this.createBeam(rightColor);
@@ -56,8 +59,6 @@ BeamDuel.prototype =  {
 		// var i = 526;
 		this.setLeftBeamSize((position + 100) * 5.26);
 		this.setRightBeamSize((-position + 100) * 5.26);
-
-		
 	},
 
 	setBoomPosition: function (position) {

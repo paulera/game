@@ -25,6 +25,7 @@ Boot.prototype = {
         // this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         // this.scale.updateLayout(true);
         this.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
+        this.game.stage.disableVisibilityChange = true;
         this.game.state.start("Preload");
     }
 }
