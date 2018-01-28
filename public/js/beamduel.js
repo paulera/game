@@ -52,10 +52,12 @@ BeamDuel.prototype =  {
 	},
 
 	setPosition: function(position) {
-		this.setBoomPosition(710 + (position * 4.8));
-		var i = 526;
-		this.setLeftBeamSize(i);
-		this.setRightBeamSize(i);
+		this.setBoomPosition(710 + (position * 5.26));
+		// var i = 526;
+		this.setLeftBeamSize((position + 100) * 5.26);
+		this.setRightBeamSize((-position + 100) * 5.26);
+
+		
 	},
 
 	setBoomPosition: function (position) {

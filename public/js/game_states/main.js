@@ -55,6 +55,8 @@ Main.prototype = {
         this.beamDuel.load();
         this.beamDuel.setPosition(0);
 
+        this.game.beamDuel = this.beamDuel;
+
 
     },
 
