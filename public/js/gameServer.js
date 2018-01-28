@@ -13,10 +13,11 @@ GameServer.prototype = {
     selectCharacter: function(characterName) {
         this.socket.emit('select character', characterName);
     },
-    waitingForGame: function() {
+    waitingForGame: function(callback) {
         this.socket.emit('waiting for game');
         this.socket.on('play', function(data) {
             console.log('other player: '+ data);
+            callback(data)
         });
     }
 };

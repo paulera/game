@@ -27,8 +27,6 @@ GameVideo.prototype = {
         video.width = this.game.width;
         video.play(true);
         setTimeout(this.stopVideo(this), 3000);
-
-        this.selectCharacter();
     },
     stopVideo:function (that) {
         video.play(false);

@@ -26,8 +26,8 @@ GameSelectCharacter.prototype = {
 
         usa.inputEnabled = true;
         malta.inputEnabled = true;
-        usa.events.onInputDown.add(this.actionOnClickusa, this);
-        malta.events.onInputDown.add(this.actionOnClickmalta, this);
+        usa.events.onInputDown.add(this.actionOnClickTrump, this);
+        malta.events.onInputDown.add(this.actionOnClickMuscat, this);
 
         var style = { font: "45px Comic Sans MS", fill: '#dd0044', align: "center" };
         this.text3 = this.add.text(this.world.centerX, this.world.centerY - 170, "Select your character", style);
@@ -35,29 +35,30 @@ GameSelectCharacter.prototype = {
         this.text3.visible = true;
     },
 
-    actionOnClickusa: function  () {
+    actionOnClickTrump: function  () {
 
-        gameServer.selectCharacter('usa');
-    	this.startGame();
-
+        gameServer.selectCharacter('trump');
     	//save the char selected
-        this.game.selectedCharacter = 1
-	},
-
-
-    actionOnClickmalta: function  () {
-
-        gameServer.selectCharacter('malta');
+        _game.selectedCharacter = 'trump';
         this.startGame();
+    },
+
+    actionOnClickMuscat: function  () {
+
+        gameServer.selectCharacter('muscat');
         //save the char selected
-        this.game.selectedCharacter = 0
+        _game.selectedCharacter = 'muscat';
+        this.startGame();
     },
 
 	// TODO: call this function when the player click "Play" button
     startGame: function(){
     	console.log("Function: GameSelectCharacter.startGame");
-        //this.game.state.start("Main");
-        gameServer.waitingForGame();
+
+        gameServer.waitingForGame(function (data) {
+            _game.otherCharacter = data;
+            _game.state.start("Main")
+        });
     }
 
 }

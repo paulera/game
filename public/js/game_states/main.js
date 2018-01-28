@@ -21,9 +21,9 @@ Main.prototype = {
     	this.bindPointerEvents(this);
     	this.createGameBaseEnvironment();
 
-        this.player = new Player(this, 'trump', 'left');
+        this.player = new Player(this, _game.selectedCharacter, 'left');
         this.player.standStill();
-        this.opponent = new Player(this, 'muscat', 'right');
+        this.opponent = new Player(this, _game.otherCharacter, 'right');
         this.opponent.standStill();
 
         var color = "#dd0044";
