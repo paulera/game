@@ -31,6 +31,10 @@ GameVideo.prototype = {
     stopVideo:function (that) {
         video.play(false);
         that.input.onDown.add(that.selectCharacter, that);
+        var spaceKey = that.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+        var enterKey = that.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+        that.input.keyboard.addKeyCapture([ Phaser.Keyboard.SPACEBAR, Phaser.Keyboard.ENTER ]);
+        spaceKey.onDown.add(that.selectCharacter, that);
     },
 
 	// TODO: call this function when the player click "Play" button
