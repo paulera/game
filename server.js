@@ -120,6 +120,8 @@ socketHandler.sockets.on('connection', function(socket) {
 
         console.log("players: "+players.length);
         if (players.length === 2){
+            playerPoints1 = 0;
+            playerPoints2 = 0;
             console.log("play!!!! ");
             socketHandler.sockets.connected[players[0].id].emit('play', players[1].character);
             socketHandler.sockets.connected[players[1].id].emit('play', players[0].character);

@@ -64,12 +64,12 @@ Main.prototype = {
 
         gameServer.gameWin(function(){
             console.log('game wine:');
-            _game.beamDuel.setPosition(data);
+            //alert('win');
         });
 
         gameServer.gameLose(function(){
             console.log('game lose:');
-            _game.beamDuel.setPosition(data);
+            //alert('lose');
         });
 
         this.game.beamDuel = this.beamDuel;
