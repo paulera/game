@@ -17,6 +17,7 @@ Boot.prototype = {
 
     preload: function(){
         console.log("Function: boot.preload");
+        gameServer.connect();
     },
 
     create: function(){

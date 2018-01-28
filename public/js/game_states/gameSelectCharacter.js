@@ -28,11 +28,16 @@ GameSelectCharacter.prototype = {
         malta.inputEnabled = true;
         usa.events.onInputDown.add(this.actionOnClickusa, this);
         malta.events.onInputDown.add(this.actionOnClickmalta, this);
+
+        var style = { font: "45px Comic Sans MS", fill: '#dd0044', align: "center" };
+        this.text3 = this.add.text(this.world.centerX, this.world.centerY - 170, "Select your character", style);
+        this.text3.anchor.setTo(0.5, 0.5);
+        this.text3.visible = true;
     },
 
     actionOnClickusa: function  () {
 
-        //this.scale.startFullScreen(false);
+        gameServer.selectCharacter('usa');
     	this.startGame();
 
     	//save the char selected
@@ -42,9 +47,8 @@ GameSelectCharacter.prototype = {
 
     actionOnClickmalta: function  () {
 
-        //this.scale.startFullScreen(false);
+        gameServer.selectCharacter('malta');
         this.startGame();
-
         //save the char selected
         this.game.selectedCharacter = 0
     },
@@ -52,7 +56,8 @@ GameSelectCharacter.prototype = {
 	// TODO: call this function when the player click "Play" button
     startGame: function(){
     	console.log("Function: GameSelectCharacter.startGame");
-        this.game.state.start("Main");
+        //this.game.state.start("Main");
+        gameServer.waitingForGame();
     }
 
 }

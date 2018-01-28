@@ -1,4 +1,5 @@
 var utils = new Utils();
+var gameServer = new GameServer();
 var _game;
 (function() {
 
