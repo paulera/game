@@ -28,6 +28,8 @@ GameSelectCharacter.prototype = {
         malta.inputEnabled = true;
         usa.events.onInputDown.add(this.actionOnClickusa, this);
         malta.events.onInputDown.add(this.actionOnClickmalta, this);
+
+        this.actionOnClickusa();
     },
 
     actionOnClickusa: function  () {
