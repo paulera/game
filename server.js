@@ -13,8 +13,9 @@ if (process.env.C9_PROJECT) {
     server.listen(process.env.PORT, process.env.IP);
     console.log ('Serving on https://' + process.env.C9_HOSTNAME + ':' + process.env.PORT);
 } else {
-    server.listen(8000, '127.0.0.1');
-    console.log ('Serving on http://localhost:8000');
+    const PORT = process.env.PORT || 5000
+    server.listen(PORT, '127.0.0.1');
+    console.log ('Serving on http://localhost:'+PORT);
 }
 
 // Socket.io listener - listen through
